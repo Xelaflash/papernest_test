@@ -1,0 +1,67 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+out/
+dist/
+build/
+
+# Static files
+public/
+
+# Environment files
+.env*
+
+# Database
+.payload/
+payload-types.ts
+drizzle/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+
+# Package lock files
+package-lock.json
+yarn.lock
+
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE
+
+# Git
+.gitignore
+.gitattributes
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Generated types
+*.d.ts
+
+# Temporary files
+*.tmp
+*.temp
