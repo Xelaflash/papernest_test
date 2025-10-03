@@ -22,6 +22,10 @@ export default defineConfig([
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     languageOptions: {
       ecmaVersion: 'latest',
+      env: {
+        node: true,
+        eslatest: true,
+      },
       sourceType: 'module',
       parser: tseslint.parser,
       parserOptions: {
