@@ -9,12 +9,13 @@ interface CountryPageProps {
 }
 
 export default async function CountryPage({ params }: CountryPageProps) {
-  const data = await getOffers({ country: params.country });
+  const { country } = await params;
+  const data = await getOffers({ country });
 
   // TODO: UI + error handling (not found)
   return (
     <div className="flex min-h-screen flex-col p-24">
-      <h1>Energy Offers in {params.country}</h1>
+      <h1>Energy Offers in {country}</h1>
       {data.map(offer => (
         <div key={offer.id} className="my-2 border border-red-500">
           <h2 className="text-2xl font-bold">{offer.name}</h2>
