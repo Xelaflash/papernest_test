@@ -1,42 +1,49 @@
+import { getCountries } from '@/app/actions/getCountries';
 import { getOffers } from '@/app/actions/getOffers';
 
-import { getCountries } from '../actions/getCountries';
+import { OffersFilters } from '@/components/OffersFilters';
 
 interface CountryPageProps {
   params: {
     country: string;
   };
+  searchParams: {
+    provider?: string;
+    energyType?: string;
+    contractDuration?: string;
+    priceGuarantee?: string;
+    sortBy?: string;
+  };
 }
 
-export default async function CountryPage({ params }: CountryPageProps) {
+export default async function CountryPage({
+  params,
+  searchParams,
+}: CountryPageProps) {
   const { country } = await params;
-  const data = await getOffers({ country });
 
-  // TODO: UI + error handling (not found)
+  const allOffers = await getOffers({ country });
+
+  const queryParams = new URLSearchParams({
+    country,
+    ...Object.fromEntries(
+      Object.entries(searchParams).filter(([_, value]) => value)
+    ),
+  });
+
+  // Fetch filtered offers
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const response = await fetch(
+    `${baseUrl}/api/offers?${queryParams.toString()}`
+  );
+  const filteredOffers = await response.json();
+
   return (
-    <div className="flex min-h-screen flex-col p-24">
-      <h1>Energy Offers in {country}</h1>
-      {data.map(offer => (
-        <div key={offer.id} className="my-2 border border-red-500">
-          <h2 className="text-2xl font-bold">{offer.name}</h2>
-          <p>{offer.description}</p>
-          <p>{offer.provider.display_name}</p>
-          <hr />
-          <h3 className="text-lg font-bold underline">Price</h3>
-          <ul>
-            <li>Consumption pricing: {offer.consumption_pricing} €/kWh</li>
-            <li>Subscription cost: {offer.subscription_cost} €</li>
-          </ul>
-          <hr />
-          <h3 className="text-lg font-bold underline">Metadata</h3>
-          <ul>
-            <li>Energy type: {offer.metadata.energy_type}</li>
-            <li>Contract duration: {offer.metadata.contract_duration}</li>
-            <li>Price guarantee: {offer.metadata.price_guarantee}</li>
-          </ul>
-        </div>
-      ))}
-    </div>
+    <OffersFilters
+      offers={filteredOffers}
+      country={country}
+      allOffers={allOffers}
+    />
   );
 }
 
