@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation';
+
 import { getCountries } from '@/app/actions/getCountries';
 import { getOffers } from '@/app/actions/getOffers';
 
@@ -21,13 +23,24 @@ export default async function CountryPage({
   searchParams,
 }: CountryPageProps) {
   const { country } = await params;
+  const resolvedSearchParams = await searchParams;
+
+  if (!country) {
+    notFound();
+  }
+
+  // Check if country is valid
+  const validCountries = await getCountries();
+  if (!validCountries.includes(country)) {
+    notFound();
+  }
 
   const allOffers = await getOffers({ country });
 
   const queryParams = new URLSearchParams({
     country,
     ...Object.fromEntries(
-      Object.entries(searchParams).filter(([_, value]) => value)
+      Object.entries(resolvedSearchParams).filter(([_, value]) => value)
     ),
   });
 
