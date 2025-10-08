@@ -79,6 +79,14 @@ const OfferCard = ({ offer, priceView, isCheapest }: OfferCardProps) => {
 
       <div className={metadataContainerStyles}>
         <div className={metadataRowStyles}>
+          <span className={metadataLabelStyles}>
+            Subscription Cost (yearly):
+          </span>
+          <span className={metadataValueStyles}>
+            {offer.subscription_cost} €
+          </span>
+        </div>{' '}
+        <div className={metadataRowStyles}>
           <span className={metadataLabelStyles}>Energy Type:</span>
           <span className={metadataValueStyles}>
             {capitalizeWords(offer.metadata.energy_type)}
