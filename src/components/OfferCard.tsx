@@ -1,4 +1,4 @@
-import { OfferWithProvider } from '@/types/energy';
+import type { OfferWithProvider } from '@/types/energy';
 
 import { capitalizeWords, cn } from '@/lib/utils';
 

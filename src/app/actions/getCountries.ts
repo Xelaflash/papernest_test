@@ -1,13 +1,15 @@
 'use server';
 
+import providers from '@/data/energy_providers.json';
+
 export const getCountries = async (): Promise<string[]> => {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  try {
+    const countries = [
+      ...new Set(providers.energy_providers.map(provider => provider.country)),
+    ];
 
-  const response = await fetch(`${baseUrl}/api/countries`);
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch countries: ${response.statusText}`);
+    return countries;
+  } catch (error) {
+    throw new Error(`Failed to fetch countries: ${error}`);
   }
-
-  return response.json();
 };

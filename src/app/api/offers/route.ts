@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
 import { filterOffers, getAllOffers } from '@/lib/offers';
 
@@ -8,7 +9,9 @@ export async function GET(req: NextRequest) {
     const result = filterOffers(getAllOffers(), params);
     return NextResponse.json(result, { status: 200 });
   } catch (error) {
-    console.error('Error in /api/offers', error);
-    return NextResponse.json({ message: 'Server error' }, { status: 500 });
+    return NextResponse.json(
+      { message: `Server error: ${error}` },
+      { status: 500 }
+    );
   }
 }

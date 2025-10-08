@@ -22,9 +22,21 @@ export default defineConfig([
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     languageOptions: {
       ecmaVersion: 'latest',
-      env: {
-        node: true,
-        eslatest: true,
+      globals: {
+        // Browser
+        window: 'readonly',
+        document: 'readonly',
+        console: 'readonly',
+        // Node.js
+        process: 'readonly',
+        Buffer: 'readonly',
+        // Web APIs
+        fetch: 'readonly',
+        URLSearchParams: 'readonly',
+        FormData: 'readonly',
+        Headers: 'readonly',
+        Request: 'readonly',
+        Response: 'readonly',
       },
       sourceType: 'module',
       parser: tseslint.parser,
@@ -110,6 +122,24 @@ export default defineConfig([
       'no-trailing-spaces': 'error',
       'eol-last': 'error',
       semi: ['error', 'always'],
+    },
+  },
+  // Test files configuration
+  {
+    files: ['**/*.test.{ts,tsx,js,jsx}', '**/*.spec.{ts,tsx,js,jsx}'],
+    languageOptions: {
+      globals: {
+        // Jest globals
+        describe: 'readonly',
+        it: 'readonly',
+        test: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+        jest: 'readonly',
+      },
     },
   },
 ]);

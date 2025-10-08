@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
-import { OfferWithProvider } from '@/types/energy';
+import type { OfferWithProvider } from '@/types/energy';
 
 import { getCountryFlag } from '@/lib/country-flag';
 import { capitalizeWords, cn } from '@/lib/utils';

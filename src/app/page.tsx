@@ -8,8 +8,7 @@ export default async function Home() {
 
   try {
     countries = await getCountries();
-  } catch (error) {
-    console.error('Error loading countries:', error);
+  } catch {
     errorMsg = 'Failed to load countries. Please try again later.';
   }
 

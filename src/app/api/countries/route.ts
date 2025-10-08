@@ -12,7 +12,9 @@ export async function GET(): Promise<
 
     return NextResponse.json(countries);
   } catch (error) {
-    console.error('Error in /api/countries', error);
-    return NextResponse.json({ message: 'Server error' }, { status: 500 });
+    return NextResponse.json(
+      { message: `Server error: ${error}` },
+      { status: 500 }
+    );
   }
 }
