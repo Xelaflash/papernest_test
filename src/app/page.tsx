@@ -30,7 +30,10 @@ export default async function Home() {
         </h2>
 
         {errorMsg ? (
-          <div className="rounded-lg bg-red-50 p-4 text-red-700 shadow-sm">
+          <div
+            className="rounded-lg bg-red-50 p-4 text-red-700 shadow-sm"
+            role="alert"
+          >
             {errorMsg}
           </div>
         ) : (
@@ -38,6 +41,7 @@ export default async function Home() {
             {countries.map(country => (
               <Link
                 key={country}
+                aria-label={`View energy offers for ${country.toUpperCase()}`}
                 href={`/${country}`}
                 className="rounded-lg bg-emerald-800 p-4 text-center text-xl font-bold text-white shadow-sm transition-all hover:opacity-90 hover:shadow-black/50"
               >

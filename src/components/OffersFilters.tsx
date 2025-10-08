@@ -66,19 +66,20 @@ const OffersFilters = ({ offers, country, allOffers }: OffersFiltersProps) => {
         <h1 className="mb-2 text-4xl font-bold text-emerald-800 capitalize">
           Energy Offers in {country} {countryFlag}
         </h1>
-        <p className="text-emerald-800">
+        <h2 className="text-emerald-800">
           Compare and find the best energy plan for your needs
-        </p>
+        </h2>
       </div>
 
       {/* Filters */}
       <div className="mb-8 rounded-xl border border-emerald-600 bg-white/80 p-6 shadow-lg shadow-emerald-900/10">
-        <h2 className="mb-6 flex items-center gap-2 text-lg font-semibold text-emerald-800">
+        <legend className="mb-6 flex items-center gap-2 text-lg font-semibold text-emerald-800">
           <svg
             className="h-5 w-5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -88,7 +89,7 @@ const OffersFilters = ({ offers, country, allOffers }: OffersFiltersProps) => {
             />
           </svg>
           Filter Options
-        </h2>
+        </legend>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {/* Provider Filter */}
@@ -204,7 +205,10 @@ const OffersFilters = ({ offers, country, allOffers }: OffersFiltersProps) => {
         {/* Price View Toggle */}
         <div className="my-4">
           <p className={labelStyles}>Billing period</p>
-          <div className="flex rounded-lg bg-emerald-100/50 p-2 shadow-inner sm:w-auto sm:min-w-80">
+          <div
+            className="flex rounded-lg bg-emerald-100/50 p-2 shadow-inner sm:w-auto sm:min-w-80"
+            aria-pressed="true"
+          >
             <button
               onClick={() => setPriceView('monthly')}
               className={cn(
@@ -213,6 +217,7 @@ const OffersFilters = ({ offers, country, allOffers }: OffersFiltersProps) => {
                   ? toggleButtonActiveStyles
                   : toggleButtonInactiveStyles
               )}
+              aria-pressed={priceView === 'monthly'}
             >
               Monthly
             </button>
@@ -224,6 +229,7 @@ const OffersFilters = ({ offers, country, allOffers }: OffersFiltersProps) => {
                   ? toggleButtonActiveStyles
                   : toggleButtonInactiveStyles
               )}
+              aria-pressed={priceView === 'annual'}
             >
               Annual
             </button>
@@ -238,6 +244,7 @@ const OffersFilters = ({ offers, country, allOffers }: OffersFiltersProps) => {
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
