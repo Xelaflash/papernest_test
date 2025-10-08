@@ -17,7 +17,7 @@ export default async function Home() {
     <main className="mx-auto w-full max-w-7xl flex-1 px-6 py-16">
       <div className="mb-12 text-center">
         <h1 className="mb-4 bg-gradient-to-r from-green-700 to-teal-200 bg-clip-text py-2 text-5xl font-bold text-transparent">
-          Energy Offer Comparator
+          Energy offers comparator
         </h1>
         <p className="text-lg text-emerald-800">
           Find the perfect energy plan tailored to your needs

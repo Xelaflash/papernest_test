@@ -63,8 +63,9 @@ const OffersFilters = ({ offers, country, allOffers }: OffersFiltersProps) => {
   return (
     <div className="mx-auto w-full max-w-7xl flex-1 px-6 py-8">
       <div className="mb-8">
-        <h1 className="mb-2 text-4xl font-bold text-emerald-800 capitalize">
-          Energy Offers in {country} {countryFlag}
+        <h1 className="mb-2 text-4xl font-bold text-emerald-800">
+          Energy offers in <span className="capitalize">{country}</span>{' '}
+          {countryFlag}
         </h1>
         <h2 className="text-emerald-800">
           Compare and find the best energy plan for your needs
