@@ -24,6 +24,13 @@ An energy offers comparison platform built with Next.js 15. Browse and compare e
 pnpm install
 ```
 
+### Environment Variable
+Add this environment variable
+
+```
+BASE_URL = http://localhost:3000
+```
+
 ### Running the Development Server
 
 ```bash
